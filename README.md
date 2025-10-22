@@ -85,3 +85,12 @@ This template comes with [Tailwind CSS](https://tailwindcss.com/) already config
 ---
 
 Built with ❤️ using React Router.
+
+## Movie API
+
+Using the [TheMovieDB](https://www.themoviedb.org/settings/api) API for movie details. This requires an account API that will be need to be set as an environment variable (VITE_TMDB_API_KEY).
+
+Link for [TheMovieDB](https://developer.themoviedb.org/reference/getting-started) API Reference guide.
+
+## Component Library - Material UI
+[Components](https://mui.com/material-ui/react-button/)
