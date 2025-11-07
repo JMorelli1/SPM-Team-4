@@ -1,0 +1,126 @@
+.movie-description-content {
+    // padding: 0 200px;
+
+    .banner {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        width: 100%;
+        height: 400px;
+        padding: 20px;
+        margin-bottom: 50px;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 500px;
+            background-color: whitesmoke;
+            background-size: cover;
+            z-index: -1;
+        }
+
+        .poster {}
+
+        .banner-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 50px 0;
+            color: black;
+
+            .banner-tagline {
+                font-style: italic;
+                color: black;
+                opacity: 0.8;
+            }
+
+            .banner-title {
+                display: flex;
+                flex-direction: column;
+
+                h1 {
+                    font-size: 40px;
+                    font-weight: 600;
+                    height: 50px;
+                }
+
+                h3 {
+                    font-size: 14px;
+                    font-style: italic;
+                    font-weight: 300;
+                    opacity: 0.8;
+                }
+            }
+
+            .banner-overview {
+                font-size: 18px;
+                overflow: auto;
+
+                p {
+                    font-size: 14px
+                }
+            }
+        }
+    }
+
+    .cast-content {
+        padding: 0 20px;
+        cursor: pointer;
+
+        .cast-title {
+            font-size: 30px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: black;
+        }
+
+        .cast-list {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding-bottom: 20px;
+            height: 400px;
+
+            .cast-card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                min-width: 150px;
+                box-shadow: 2px 2px 6px 3px rgba(0, 0, 0, 0.2);
+                border-radius: 8px;
+
+                .cast-photo {
+                    border-radius: 8px 8px 0 0;
+                    height: 225px;
+                }
+
+                .cast-info {
+                    padding: 0 2px;
+                    display: flex;
+                    flex-direction: column;
+                    overflow-y: auto;
+                    gap: 2px;
+
+                    .cast-name {
+                        margin-top: 8px;
+                        font-weight: 500;
+                        text-align: center;
+                        color: black;
+                    }
+
+                    .cast-character {
+                        font-size: 14px;
+                        color: black;
+                        text-align: center;
+                        text-wrap: wrap;
+                    }
+                }
+
+            }
+        }
+    }
+}
