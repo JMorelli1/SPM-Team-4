@@ -8,6 +8,6 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function MovieDescriptionRoute({ params }: Route.ComponentProps) {
+export default function MovieDescriptionRoute({ params }: { params: { movieId: string }}) {
   return <MovieDescription movieId={params.movieId} />;
 }

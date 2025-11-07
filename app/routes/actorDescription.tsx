@@ -8,6 +8,6 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function ActorDescriptionRoute({ params }: Route.ComponentProps) {
+export default function ActorDescriptionRoute({ params }: { params: { actorId: string }}) {
   return <ActorDescription actorId={params.actorId} />;
 }
