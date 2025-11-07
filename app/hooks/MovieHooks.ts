@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { fetchDiscoverMovies, fetchMovieById } from "~/services/movieApi";
+import { fetchActorById, fetchDiscoverMovies, fetchMovieById, fetchMovieCreditsById,fetchActorCreditsById } from "~/services/movieApi";
 
 export const useMovieDiscover = (query: string, pageNumber: number) => {
     return useQuery({
@@ -9,4 +9,41 @@ export const useMovieDiscover = (query: string, pageNumber: number) => {
         enabled: !!query,
     }
     );
+}
+
+export const useMovieById = (movieId: string | number) => {
+    return useQuery({
+        queryKey: ['movieById', movieId],
+        queryFn: () => fetchMovieById(movieId),
+        staleTime: 10 * 60 * 1000, // 10 minutes
+        enabled: !!movieId,
+    });
+}
+
+export const useActorById = (actorId: string | number) => {
+    return useQuery({
+        queryKey: ['actorById', actorId],
+        queryFn: () => fetchActorById(actorId),
+        staleTime: 10 * 60 * 1000, // 10 minutes
+        enabled: !!actorId,
+    });
+}
+
+
+export const useMovieCreditsById = (movieId: string | number) => {
+    return useQuery({
+        queryKey: ['movieCreditsById', movieId],
+        queryFn: () => fetchMovieCreditsById(movieId),
+        staleTime: 10 * 60 * 1000, // 10 minutes
+        enabled: !!movieId,
+    });
+}
+
+export const useActorCreditsById = (actorId: string | number) => {
+    return useQuery({
+        queryKey: ['actorCreditsById', actorId],
+        queryFn: () => fetchActorCreditsById(actorId),
+        staleTime: 10 * 60 * 1000, // 10 minutes
+        enabled: !!actorId,
+    });
 }
