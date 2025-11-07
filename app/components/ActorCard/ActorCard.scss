@@ -1,0 +1,36 @@
+.actor-card {
+  position: relative;
+  width: fit-content;
+  box-shadow: 0 0 6px 5px rgba(33, 33, 33, 0.1);
+  transition: box-shadow 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 6px 7px rgba(33, 33, 33, 0.5);
+  }
+
+  &__info {
+    position: absolute;
+    color: white;
+    bottom: 0;
+    width: 100%;
+
+    .actor-card__title {
+      display: none;
+      min-height: 60px;
+      font-size: 20px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.929)e9b6;
+      font-weight: bold;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+      margin: 0;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.5rem;
+      transition: 0.3s ease;
+
+      .actor-card:hover & {
+        display: block;
+      }
+    }
+  }
+}

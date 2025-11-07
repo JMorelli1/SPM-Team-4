@@ -1,44 +1,28 @@
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { useNavigate } from "react-router";
 import type { Movie } from "~/types/Movie";
+import Poster from "../Poster/Poster";
+import './MovieCard.scss';
+
 
 type MovieCardProps = {
-    movie: Movie
+  movie: Movie
 }
-const MovieCard = ({ movie}: MovieCardProps) => {
-    const navigate = useNavigate();
-    
-    return (
-        <Card
-                    key={movie.id}
-                    onClick={() => {navigate(`/movie/${movie.id}`)}}
-                    className="shadow-lg hover:shadow-xl transition-shadow duration-200 flex flex-row"
-                >
-                    <CardMedia //Does not render: must call to get images
-                        component="img"
-                        height="100"
-                        image={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
-                        alt={movie.title}
-                        className="object-cover w-32"
-                    />
-                    <CardContent className="flex flex-col">
-                        <Typography
-                            variant="h6"
-                            component="h2"
-                            className="font-semibold text-gray-800 mb-2 line-clamp-1"
-                        >
-                            {movie.title}
-                        </Typography>
-                        <Typography
-                            variant="body2"
-                            color="text.secondary"
-                            className="line-clamp-3"
-                        >
-                            {movie.overview}
-                        </Typography>
-                    </CardContent>
-                </Card>
-    );
+const MovieCard = ({ movie }: MovieCardProps) => {
+  const navigate = useNavigate();
+  const movieName = movie?.title ? movie.title : movie?.name;
+
+  const navigateToDetails = () => {
+    navigate(`/movie/${movie.id}`);
+  }
+
+  return (
+    <div className="movie-card" onClick={navigateToDetails}>
+      <Poster path={movie.poster_path} altText={movie.title} width={200} />
+      <div className="movie-card__info">
+        <h3 className="movie-card__title">{movieName}</h3>
+      </div>
+    </div>
+  );
 }
 
 export default MovieCard;

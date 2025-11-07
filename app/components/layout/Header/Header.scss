@@ -1,0 +1,30 @@
+.header {
+    width: 100%;
+  background-color: #4c4c4c !important; // grey-700
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // shadow-md
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+
+  &__toolbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem; 
+    padding: 0.5rem 1rem;
+  }
+
+  &__title {
+    font-weight: 600;
+  }
+
+  // Optional hover/branding enhancement
+  &:hover {
+    background-color: #464646; // slightly darker grey
+    transition: background-color 0.2s ease;
+  }
+}
