@@ -1,13 +1,11 @@
-import { Button } from "@mui/material";
-import { fetchDiscoverMovies } from "~/services/movieApi";
-import SearchBar from "./SearchBar/SearchBar";
-import { Pagination, CircularProgress, Alert, Box } from "@mui/material";
-import MovieResultList from "./MovieResultList/MovieResultList";
+import { Alert, Box, CircularProgress, Pagination } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import type { Movie } from "~/types/Movie";
-import Header from "~/components/Header/Header";
 import { useNavigate } from "react-router";
 import { useMovieDiscover } from "~/hooks/MovieHooks";
+import type { Movie } from "~/types/Movie";
+import MovieResultList from "./MovieResultList/MovieResultList";
+import SearchBar from "./SearchBar/SearchBar";
+import './welcome.scss';
 
 export function Welcome() {
   const [query, setQuery] = useState("");
@@ -15,7 +13,7 @@ export function Welcome() {
   const navigate = useNavigate();
 
   const [page, setPage] = useState(1);
-  const [movies, setMovies] = useState<Movie[]>([]);
+  const [movies, setMovies] = useState<Movie[] | null>(null);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -29,7 +27,7 @@ export function Welcome() {
     }
     if (movieDiscoverQuery.error) {
       setError("Failed to load movies.");
-      setMovies([]);
+      setMovies(null);
       setTotalPages(1);
     }
   }, [movieDiscoverQuery.data, movieDiscoverQuery.error, movieDiscoverQuery.isSuccess]);
@@ -44,34 +42,33 @@ export function Welcome() {
   }
 
   return (
-    <main className="flex items-center justify-center">
-      <div className="flex-1 flex flex-col items-center gap-16 min-h-0">
-        <Header />
-        <div className="max-w-[600px] w-full space-y-6 px-4">
-          <SearchBar query={query} setQuery={setQuery} onSearch={handleSearch} />
-          <div className={`flex flex-col gap-4`}>
-            {loading ? (
-              <Box className="flex justify-center py-10">
-                <CircularProgress />
-              </Box>
-            ) : error ? (
-              <Alert severity="error">{error}</Alert>
-            ) : (
-              <MovieResultList movies={movies} />
-            )}
-
-            <Box className="flex justify-center py-2">
-              <Pagination
-                count={totalPages}
-                page={page}
-                onChange={handleChange}
-                color="primary"
-                size="medium"
-                showFirstButton
-                showLastButton
-              />
+    <main className="welcome-page">
+      <div className="welcome-page-content">
+        <SearchBar query={query} setQuery={setQuery} onSearch={handleSearch} />
+        <div>
+          {loading ? (
+            <Box className="flex justify-center py-10">
+              <CircularProgress />
             </Box>
-          </div>
+          ) : error ? (
+            <Alert severity="error">{error}</Alert>
+          ) : (
+            <div className="movie-results-container">
+              <MovieResultList movies={movies} />
+            </div>
+          )}
+
+          {totalPages > 1 && <Box className="flex justify-center py-2">
+            <Pagination
+              count={totalPages}
+              page={page}
+              onChange={handleChange}
+              color="primary"
+              size="medium"
+              showFirstButton
+              showLastButton
+            />
+          </Box>}
         </div>
       </div>
     </main>

@@ -31,21 +31,15 @@ const SearchBar: React.FC<Props> = ({ query, setQuery, onSearch }) => {
     const clear = () => setQuery("");
 
     return (
-        <form onSubmit={submit} className="w-full">
+        <form onSubmit={submit} className="search-bar">
             <TextField
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={"Search movies, actors, genres…"}
-                variant="outlined"
                 size="small"
                 fullWidth
                 slotProps={{
                     input: {
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                {loading ? <CircularProgress size={20} /> : <SearchIcon />}
-                            </InputAdornment>
-                        ),
                         endAdornment: (
                             <InputAdornment position="end">
                                 {query ? (
