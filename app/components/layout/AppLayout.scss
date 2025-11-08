@@ -1,11 +1,26 @@
 .app{
+    position: relative;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     background-color: whitesmoke;
 
     .app-content {
+        position: relative;
+        background-color: #f0f0f0;
+        height: calc(100% + 200px);
+        box-shadow: 1px 5px 4px 5px rgba(0, 0, 0, .1);
+        padding: 0 20px;
         flex: 1;
-        margin: 0 200px;
+        margin: 0 180px;
+    }
+
+    .tmdb-logo{
+        position: sticky;
+        left: 20px;
+        bottom: 20px;
+        width: 150px;
+        font-style: italic;
+        font-size: 14px;
     }
 }
