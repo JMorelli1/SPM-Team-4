@@ -2,7 +2,7 @@
   "name": "spm-team4-ui",
   "private": true,
   "type": "module",
-  "homepage": "https://reel-time.github.io/SPM-Team-4/",
+  "homepage": "https://jmorelli1.github.io/SPM-Team-4/",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
