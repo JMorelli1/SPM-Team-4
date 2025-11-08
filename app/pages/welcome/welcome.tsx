@@ -1,6 +1,5 @@
 import { Alert, Box, CircularProgress, Pagination } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
 import { useMovieDiscover } from "~/hooks/MovieHooks";
 import type { Movie } from "~/types/Movie";
 import MovieResultList from "./MovieResultList/MovieResultList";
@@ -10,12 +9,10 @@ import './welcome.scss';
 export function Welcome() {
   const [query, setQuery] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const navigate = useNavigate();
 
   const [page, setPage] = useState(1);
   const [movies, setMovies] = useState<Movie[] | null>(null);
   const [totalPages, setTotalPages] = useState<number>(1);
-  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   const movieDiscoverQuery = useMovieDiscover(searchQuery, page);
@@ -46,7 +43,7 @@ export function Welcome() {
       <div className="welcome-page-content">
         <SearchBar query={query} setQuery={setQuery} onSearch={handleSearch} />
         <div>
-          {loading ? (
+          {movieDiscoverQuery.isLoading || movieDiscoverQuery.isFetching ? (
             <Box className="flex justify-center py-10">
               <CircularProgress />
             </Box>

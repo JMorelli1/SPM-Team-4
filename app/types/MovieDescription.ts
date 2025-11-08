@@ -11,6 +11,7 @@ export type MovieDescription = {
     title: string;
     popularity: number;
     vote_average: number;
+    backdrop_path: string;
 }
 
 type Genre = {

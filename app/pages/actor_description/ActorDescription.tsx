@@ -7,24 +7,9 @@ import Poster from "~/components/Poster/Poster";
 const ActorDescription = ({ actorId }: { actorId: string }) => {
 
     const actorQuery = useActorById(actorId);
-    console.log(actorQuery.data);
-
-    // const getRuntimeString = (runtime: number | undefined) => {
-    //     if (!runtime) return '';
-    //     const hours = Math.floor(runtime / 60);
-    //     const minutes = runtime % 60;
-    //     return `${hours}h ${minutes}m`;
-    // }
-
-    // const getRelaseDateString = (releaseDate: string | undefined) => {
-    //     if (!releaseDate) return '';
-    //     const date = new Date(releaseDate);
-    //     return date.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
-    // }
-
 
     return (
-        <div className="movie-description-content">
+        <div className="actor-description-content">
             <div className="banner">
                 <Poster path={actorQuery.data?.profile_path} altText={actorQuery.data?.name} width={200} />
 
