@@ -2,7 +2,10 @@
   "name": "spm-team4-ui",
   "private": true,
   "type": "module",
+  "homepage": "https://reel-time.github.io/SPM-Team-4/",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
@@ -27,6 +30,7 @@
     "@types/node": "^20",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
+    "gh-pages": "^6.3.0",
     "sass-embedded": "^1.93.2",
     "tailwindcss": "^4.1.4",
     "typescript": "^5.8.3",
