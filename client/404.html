@@ -1,0 +1,18 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<title>Redirecting…</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+/**
+ * GitHub Pages serves 404.html for unknown paths. We rewrite to the SPA entry
+ * with the original path in a query param, then restore it in index.html.
+ */
+(function(l) {
+  var repo = "/SPM-Team-4";
+  var path = l.pathname.startsWith(repo) ? l.pathname.slice(repo.length) : l.pathname;
+  var query = l.search || "";
+  var hash = l.hash || "";
+  l.replace(repo + "/?p=" + encodeURIComponent(path) + query + hash);
+})(window.location);
+</script>
+<style>html,body{margin:0;height:100%;background:#000}</style>
+</head><body></body></html>
