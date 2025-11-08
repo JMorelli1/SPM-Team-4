@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
+      VITE_TMDB_API_KEY: ${{ secrets.VITE_TMDB_API_KEY }}
 
     steps:
       - name: Checkout

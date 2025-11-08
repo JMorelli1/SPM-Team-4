@@ -4,7 +4,6 @@ import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-  base: "/SPM-Team-4/",
   plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
   server: {
     proxy: {
