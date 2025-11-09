@@ -28,9 +28,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const entries = new URLSearchParams(req.query as Record<string, string>).entries();
   for (const [k, v] of entries) if (k !== "path") upstream.searchParams.set(k, v);
 
-  // Inject API key if provided
-  if (process.env.API_KEY) upstream.searchParams.set("api_key", process.env.API_KEY);
-
   // Prepare request to upstream
   const method = req.method || "GET";
   let body: BodyInit | undefined;
@@ -52,7 +49,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     headers: {
       "Accept": "application/json",
       // Forward bearer token if you need to (optional):
-      "Authorization": (req.headers["authorization"] as string) || "",
+      "Authorization": `Bearer ${process.env.API_KEY}`,
       "Content-Type": contentType || "application/json"
     },
     body
