@@ -16,8 +16,7 @@ const defaultHeaders = {
 const buildUrl = (path: string, queryParams?: Record<string, any>) => {
     const baseUrl = isLocal ? `${apiBaseUrl}${path}` : `${proxyURL}` // Set proxy when non local
     const params = buildQueryParams(queryParams ?? {}, path)
-
-    return `${baseUrl}${params ? `?${params}`: ''}`
+    return `${baseUrl}${params.size !== 0 ? `?${params}`: ''}`
 }
 
 const buildQueryParams = (params: Record<string, any>, path: string) => {

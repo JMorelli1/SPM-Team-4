@@ -41,7 +41,9 @@ export function Welcome() {
   return (
     <main className="welcome-page">
       <div className="welcome-page-content">
+        <div style={{width: '97%'}}>
         <SearchBar query={query} setQuery={setQuery} onSearch={handleSearch} />
+        </div>
         <div>
           {movieDiscoverQuery.isLoading || movieDiscoverQuery.isFetching ? (
             <Box className="flex justify-center py-10">
