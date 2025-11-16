@@ -3,7 +3,6 @@ import type { Movie } from "~/types/Movie";
 import Poster from "../Poster/Poster";
 import './ActorCard.scss';
 
-
 type ActorCardProps = {
   movie: Movie
 }

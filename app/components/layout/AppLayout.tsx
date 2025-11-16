@@ -10,7 +10,7 @@ export function AppLayout() {
       <div className="app-content">
       <Outlet />
       </div>
-      <div className="tmdb-logo">Powered by <img src="assets/tmdb-logi.svg" /></div>
+      <div className="tmdb-logo">Powered by <img alt="TMDB Logo" src="assets/tmdb-logi.svg" /></div>
     </div>
   );
 }

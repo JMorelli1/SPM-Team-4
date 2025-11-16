@@ -73,7 +73,7 @@ const Header: React.FC = () => {
 
       {nextTitle && (
         <div className={`title-layer ${titlePhase === "in" ? "enter" : ""}`}>
-          <span className="title-text">{nextTitle}</span>
+          <span className="title-text" onClick={() => navigate(`/movie/${currentBannerId}`)}>{nextTitle}</span>
         </div>
       )}
       <div className='header_content'>
