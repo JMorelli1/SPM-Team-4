@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query"
+import { useQueries, useQuery } from "@tanstack/react-query"
 import { fetchActorById, fetchDiscoverMovies, fetchMovieById, fetchMovieCreditsById,fetchActorCreditsById, fetchMovieBannerDiscover } from "~/services/movieApi";
 
 export const useMovieDiscover = (query: string, pageNumber: number) => {
@@ -29,6 +29,16 @@ export const useActorById = (actorId: string | number) => {
     });
 }
 
+export const useMovieByIds = (movieIds: (string)[]) => {
+    return useQueries({
+        queries: movieIds.map((movieId) => ({
+            queryKey: ['movieById', movieId],
+            queryFn: () => fetchMovieById(movieId),
+            staleTime: 10 * 60 * 1000, // 10 minutes
+            enabled: !!movieId,
+        })),
+    });
+}
 
 export const useMovieCreditsById = (movieId: string | number) => {
     return useQuery({

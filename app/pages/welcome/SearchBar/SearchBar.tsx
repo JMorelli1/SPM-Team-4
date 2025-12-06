@@ -17,11 +17,8 @@ const SearchBar: React.FC<Props> = ({ query, setQuery, onSearch }) => {
 
     const submit = async (e?: React.FormEvent) => {
         e?.preventDefault();
-        // const q = query.trim();
-        // if (!q || loading) return;
         try {
             setLoading(true);
-            console.log("Searching for:", query);
             await onSearch();
         } finally {
             setLoading(false);

@@ -5,8 +5,6 @@ import { useActorCreditsById, useMovieCreditsById } from "~/hooks/MovieHooks";
 const MovieList = ({ actorId }: { actorId: string }) => {
 
     const movieCreditsQuery = useActorCreditsById(actorId);
-    console.log('cast', movieCreditsQuery.data?.cast)
-
     const navigate = useNavigate();
 
     const navigateToDetails = (id: number) => {

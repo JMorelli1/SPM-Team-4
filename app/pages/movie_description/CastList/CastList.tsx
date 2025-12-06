@@ -3,15 +3,13 @@ import Poster from "~/components/Poster/Poster";
 import { useMovieCreditsById } from "~/hooks/MovieHooks";
 
 const CastList = ({ movieId }: { movieId: string }) => {
-
     const movieCreditsQuery = useMovieCreditsById(movieId);
-console.log('cast',movieCreditsQuery.data?.cast)
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const navigateToDetails = (id: number) => {
-    navigate(`/actor/${id}`);
-  }
+    const navigateToDetails = (id: number) => {
+        navigate(`/actor/${id}`);
+    }
     return (
         <div className="cast-content">
             <h2 className="cast-title">Cast</h2>

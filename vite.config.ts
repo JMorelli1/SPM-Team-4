@@ -12,6 +12,11 @@ export default defineConfig({
         target: 'https://api.themoviedb.org',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/movies/, '/3')
+      },
+      '/api/user': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/user/, '')
       }
     }
   }

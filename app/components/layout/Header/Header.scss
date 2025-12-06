@@ -112,7 +112,8 @@
       opacity: 1;
     }
   }
-    @keyframes titleOut {
+
+  @keyframes titleOut {
     from {
       transform: translateY(0);
       opacity: 1;
@@ -137,9 +138,28 @@
       cursor: pointer;
     }
 
+    &__login {
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      
+      .icon {
+        font-size: 35px;
+        background-color: rgba(128, 128, 128, 0.48);
+        border-radius: 0.5rem;
+        padding: 0.25rem;
+
+        &:hover {
+          background-color: rgba(128, 128, 128, 0.7);
+        }
+      }
+    }
+
     &__toolbar {
       display: flex;
-      justify-content: flex-start;
+      justify-content: space-between;
       align-items: center;
       gap: 0.5rem;
       padding: 0.5rem 1rem;

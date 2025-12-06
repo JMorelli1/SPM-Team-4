@@ -1,5 +1,6 @@
 import { Alert, Box, CircularProgress, Pagination } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import FavoriteList from "~/components/FavoriteList/FavoriteList";
 import { useMovieDiscover } from "~/hooks/MovieHooks";
 import type { Movie } from "~/types/Movie";
 import MovieResultList from "./MovieResultList/MovieResultList";
@@ -69,6 +70,8 @@ export function Welcome() {
             />
           </Box>}
         </div>
+
+        <FavoriteList />
       </div>
     </main>
   );

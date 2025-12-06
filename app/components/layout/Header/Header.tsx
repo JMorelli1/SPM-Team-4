@@ -6,6 +6,9 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useMovieBannerDiscover } from '~/hooks/MovieHooks';
 import './Header.scss';
+import { AccountBoxOutlined, ExitToAppOutlined } from '@mui/icons-material';
+import { Tooltip } from '@mui/material';
+import { useAppContext } from '~/AppContextProvider';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
@@ -18,6 +21,7 @@ const Header: React.FC = () => {
   const [currentTitle, setCurrentTitle] = useState("");
   const [nextTitle, setNextTitle] = useState<string | null>("");
   const [titlePhase, setTitlePhase] = useState<"idle" | "in" | "out">("idle");
+  const {user, clearUser} = useAppContext();
 
   const imageUrlBasePath = `https://image.tmdb.org/t/p/w500/`
 
@@ -59,14 +63,22 @@ const Header: React.FC = () => {
     navigate('/');
   }
 
+  const signOut = () => {
+    clearUser();
+    navigate('/');
+  }
+
+  const handleAccountClick = () => {
+    navigate('/account');
+  }
+
   return (
     <div
-      // position="static"
       className="header"
     >
       <div className="banner-layer current" style={{ ['--banner-image' as any]: `url(${currentImage})` }} />
       {nextImage && <div className="banner-layer next" style={{ ['--banner-image' as any]: `url(${nextImage})` }} />}
-      {/* Title layers (positioned over images) */}
+
       <div className={`title-layer ${titlePhase === "in" ? "exit" : ""}`}>
         <span className="title-text" onClick={() => navigate(`/movie/${currentBannerId}`)}>{currentTitle}</span>
       </div>
@@ -86,6 +98,20 @@ const Header: React.FC = () => {
             <Typography variant="h6" component="div" className="header_content__title">
               Reel Time
             </Typography>
+          </div>
+          <div className="header_content__login">
+            {user ?
+              <>
+                <Tooltip title="Account" placement="bottom">
+                  <div onClick={handleAccountClick}><AccountBoxOutlined className='icon' /></div>
+                </Tooltip>
+                <Tooltip title="Sign Out" placement="bottom">
+                  <div onClick={signOut}><ExitToAppOutlined className='icon' /></div>
+                </Tooltip>
+              </>
+              :
+              <span className='icon' style={{ fontSize: '16px' }} onClick={() => navigate('/login')}>Sign In</span>
+            }
           </div>
         </Toolbar>
       </div>

@@ -1,4 +1,3 @@
-// src/components/MovieCardGrid.tsx
 import React from "react";
 import ActorCard from "~/components/ActorCard/ActorCard";
 import MovieCard from "~/components/MovieCard/MovieCard";
@@ -10,7 +9,6 @@ type Props = {
 
 
 const MovieResultList: React.FC<Props> = ({ movies }) => {
-    console.log(movies)
     if (!movies) {
         return (
             <div className="text-center text-gray-500 mt-10">
