@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import MovieCard from "./MovieCard";
 
-// Mock react-router (same style as Header.test.tsx)
+// Mock react router
 const mockNavigate = vi.fn();
 vi.mock("react-router", async (importOriginal) => {
   const mod = await importOriginal<any>();
