@@ -1,6 +1,5 @@
 import { Star, StarBorderOutlined } from "@mui/icons-material";
 import { Tooltip } from "@mui/material";
-import { useQueryClient } from "@tanstack/react-query";
 import { useAppContext } from "~/AppContextProvider";
 import CircularProgressWithLabel from "~/components/CircularProgressWithLabel/CircularProgressWithLabel";
 import Poster from "~/components/Poster/Poster";
@@ -11,7 +10,6 @@ import './MovieDescription.scss';
 
 const MovieDescription = ({ movieId }: { movieId: string }) => {
     const { user, updateUserFavorites } = useAppContext();
-    const queryClient = useQueryClient();
     const addFavoriteMutation = useAddUserFavorite();
     const removeFavoriteMutation = useRemoveUserFavorite();
     const movieQuery = useMovieById(movieId);
