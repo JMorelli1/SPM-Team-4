@@ -1,6 +1,7 @@
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import Header from "./Header";
+import { AppProvider } from "~/AppContextProvider";
 
 // Mock useNavigate from react-router
 const mockNavigate = vi.fn();
@@ -18,6 +19,12 @@ vi.mock("~/hooks/MovieHooks", () => ({
     useMovieBannerDiscover: () => mockUseMovieBannerDiscover(),
 }));
 
+const mockUseUserDetails = vi.fn();
+vi.mock("~/hooks/UserHooks", () => ({
+    useUserDetails: () => mockUseUserDetails(),
+}));
+
+
 // Test data
 const imageBase = "https://image.tmdb.org/t/p/w500/";
 const results = [
@@ -27,6 +34,7 @@ const results = [
 ];
 
 describe("Header", () => {
+    let containerObj = {};
     beforeEach(() => {
         vi.useFakeTimers();
         mockNavigate.mockReset();
@@ -35,6 +43,14 @@ describe("Header", () => {
             isLoading: false,
             isError: false,
         });
+
+        mockUseUserDetails.mockReturnValue({
+            data: { username: "testuser", favorites: [] },
+            isLoading: false,
+            isError: false,
+        });
+
+        containerObj = render(<AppProvider><Header /></AppProvider>);
     });
 
     afterEach(() => {
@@ -43,13 +59,12 @@ describe("Header", () => {
     });
 
     it("renders logo text and toolbar", () => {
-        render(<Header />);
         expect(screen.getByText("Reel Time")).toBeInTheDocument();
         expect(document.querySelector(".header_content__toolbar")).toBeInTheDocument();
     });
 
     it("initializes current banner layer with the first movie image and title", () => {
-        const { container } = render(<Header />);
+        const { container } = containerObj as { container: HTMLElement };
 
         // Current banner-layer should have CSS var set to first image
         const currentLayer = container.querySelector(".banner-layer.current") as HTMLElement;
@@ -63,21 +78,18 @@ describe("Header", () => {
     });
 
     it("navigates to '/' when clicking the logo", () => {
-        render(<Header />);
         const logo = document.querySelector(".header_content__logo") as HTMLElement;
         fireEvent.click(logo);
         expect(mockNavigate).toHaveBeenCalledWith("/");
     });
 
     it("navigates to the current movie page when clicking the title", () => {
-        render(<Header />);
-
         fireEvent.click(screen.getByText(results[0].title));
         expect(mockNavigate).toHaveBeenCalledWith(`/movie/${results[0].id}`);
     });
 
     it("should render next banner image after 20 secs", async () => {
-        const { container } = render(<Header />);
+        const { container } = containerObj as { container: HTMLElement };
 
         // Advance to trigger cycle
         await act(async () => {
@@ -102,7 +114,7 @@ describe("Header", () => {
     });
 
     it("should swap next and current banner after 21 secs", async () => {
-        const { container } = render(<Header />);
+        const { container } = containerObj as { container: HTMLElement };
 
         // Trigger cycle
         await act(async () => {
@@ -124,7 +136,7 @@ describe("Header", () => {
     });
 
     it("should render third movie banner after 40 seconds", async () => {
-        const { container } = render(<Header />);
+        const { container } = containerObj as { container: HTMLElement };
 
         // First cycle to second movie
         await act(async () => {

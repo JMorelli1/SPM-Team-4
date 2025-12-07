@@ -16,7 +16,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
   }
 
   return (
-    <div className="movie-card" onClick={navigateToDetails}>
+    <div className="movie-card" data-testid="movie-card" onClick={navigateToDetails}>
       <Poster path={movie.poster_path} altText={movie.title} width={200} />
       <div className="movie-card__info">
         <h3 className="movie-card__title">{movieName}</h3>

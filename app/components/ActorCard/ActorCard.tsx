@@ -14,7 +14,7 @@ const ActorCard = ({ movie }: ActorCardProps) => {
   }
 
   return (
-    <div className="actor-card" onClick={navigateToDetails}>
+    <div className="actor-card" data-testid="actor-card" onClick={navigateToDetails}>
       <Poster path={movie.profile_path} altText={movie.name} width={200} />
 
       <div className="actor-card__info">
